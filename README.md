@@ -11,6 +11,9 @@ example of the use: http://jsfiddle.net/bZTUX/
 4. init filter
 
 
+
+&lt;html&gt;
+&lt;head&gt;
 &lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;content-type&quot;&gt;
 &lt;meta http-equiv=&#039;pragma&#039; content=&#039;no-cache&#039;&gt;
 &lt;/head&gt;
@@ -27,5 +30,7 @@ example of the use: http://jsfiddle.net/bZTUX/
 
 &lt;/body&gt;
 &lt;/html&gt;
+
+
 
 
