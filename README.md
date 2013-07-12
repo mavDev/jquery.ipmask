@@ -10,7 +10,7 @@ example of the use: http://jsfiddle.net/bZTUX/
 3. add input field
 4. init filter
 
-<code>
+<pre>
 <html>
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="content-type">
@@ -29,5 +29,5 @@ example of the use: http://jsfiddle.net/bZTUX/
 
 </body>
 </html>
+</pre>
 
-</code>
