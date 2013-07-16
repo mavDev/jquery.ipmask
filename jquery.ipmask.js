@@ -6,8 +6,8 @@
             input = this,
             curVal = '',
 
-            v4maskRegFull = new RegExp("^(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])(\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])){3}$"),
-            v4maskRegPart = new RegExp("^(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])((\\.)|(\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])){0,1}){0,3}$"),
+            v4maskRegFull = new RegExp("^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$"),
+            v4maskRegPart = new RegExp("^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])((\\.)|(\\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){0,1}){0,3}$"),
 
             checkKey = function(val){
 
@@ -25,10 +25,13 @@
             },
 
             // add delimiter if need
-            addDot = function(repDot){
+            addDot = function(key,replaceDot){
                 curVal = input.val();
-                if(!v4maskRegPart.test(curVal+1) && v4maskRegPart.test(curVal+'.') || repDot) input.val(curVal+'.');
-                return repDot?true:false;
+                if((key != '.' && (!v4maskRegPart.test(curVal+key+1) && v4maskRegPart.test(curVal+key+'.')) || replaceDot)) {
+                    input.val(curVal+key+'.');
+                    return true;
+                }
+                return false;
             },
 
             onKeypress = function(e){
@@ -49,8 +52,8 @@
 
                     // init check and return 
                     if(!checkKey(key)) return e.preventDefault();
-                    else addDot(replaceDot);
-                    return replaceDot?e.preventDefault():true;
+                    // try add dot
+                    else return addDot(key,replaceDot)?e.preventDefault():true;
 
                 }
             },
