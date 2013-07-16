@@ -12,22 +12,22 @@ example of the use: http://jsfiddle.net/8525B/
 
 
 
-+```html
-+<html>
-+<head>
-+<meta content="text/html; charset=utf-8" http-equiv="content-type">
-+<meta http-equiv='pragma' content='no-cache'>
-+</head>
-+<body>
-+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-+<script type="text/javascript" src="jquery.ipmask.v4.js"></script>
-+<input type="text" name="" id="testip"/>
-+<script type="text/javascript">
-+    $('#testip').ipmask();
-+</script>
-+</body>
-+</html>
-+``` 
+```html
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+<meta http-equiv='pragma' content='no-cache'>
+</head>
+<body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.ipmask.v4.js"></script>
+<input type="text" name="" id="testip"/>
+<script type="text/javascript">
+    $('#testip').ipmask();
+</script>
+</body>
+</html>
+```
 
 
 
