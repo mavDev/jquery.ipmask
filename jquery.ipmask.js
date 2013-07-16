@@ -10,6 +10,10 @@
             v4maskRegPart = new RegExp("^(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])((\\.)|(\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])){0,1}){0,3}$"),
 
             checkKey = function(val){
+
+                // if last symbol dot return false
+                if(curVal.substring(curVal.length-1) == '.' && val == '.') return false;
+
                 // check cur input symbol
                 if(v4maskRegPart.test(curVal+val)) return true;
                 // if no, try after add dot delimiter
