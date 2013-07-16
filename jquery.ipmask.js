@@ -21,15 +21,22 @@
             },
 
             // add delimiter if need
-            addDot = function(){
+            addDot = function(repDot){
                 curVal = input.val();
-                // if unpossible input next symbol digit try add delimiter
-                if(!v4maskRegPart.test(curVal+1) && v4maskRegPart.test(curVal+'.')) return input.val(curVal+'.');
-            }
+                if(!v4maskRegPart.test(curVal+1) && v4maskRegPart.test(curVal+'.') || repDot) input.val(curVal+'.');
+                return repDot?true:false;
+            },
 
             onKeypress = function(e){
                 var k = e.which;
                 curVal = input.val();
+
+                var replaceDot = false;
+                // raplace , or ' ' for . and set flag replaceDot
+                if(k == 44 || k == 32) {
+                    k = 46;
+                    replaceDot = true;
+                }
 
                 if (e.ctrlKey || e.altKey || e.metaKey || k<32) {
                     return true;
@@ -38,7 +45,8 @@
 
                     // init check and return 
                     if(!checkKey(key)) return e.preventDefault();
-                    else return addDot;
+                    else addDot(replaceDot);
+                    return replaceDot?e.preventDefault():true;
 
                 }
             },
