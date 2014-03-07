@@ -36,13 +36,13 @@ $.fn.setCursorPosition = function(pos) {
             // test to add next dot
             addDot = function(key){
 
-                if(key != '.' && (!v4maskRegPart.test(curVal.start+key+1+curVal.end) && v4maskRegPart.test(curVal.start+key+'.'+curVal.end))) {
+                if(key != '.' && (!v4maskRegPart.test((curVal.start+key)+1+curVal.end) && v4maskRegPart.test(curVal.start+key+'.'+curVal.end))) {
                     return true;
                 }
                 return false;
             },
 
-            setInput = function(str){
+            setInput = function(str,selStart,key){
                 // get array: explode by dot and remove empty elements from array
                 parts = $.grep(str.length?str.split('.'):[str],function(item){
                     return item != '';
@@ -68,7 +68,7 @@ $.fn.setCursorPosition = function(pos) {
                 // del firefox
                 if(k==46 && e.which==0) k=0;
 
-                // change the comma and space to the dot
+                // поменять пробел и , на точку
                 if(k == 44 || k == 32) {
                     k = 46;
                 }
@@ -79,14 +79,14 @@ $.fn.setCursorPosition = function(pos) {
                 input = $(this);
                 selStart = input[0].selectionStart;
                 selEnd = input[0].selectionEnd;
-
                 curVal.val = input.val();
 
-                // remove all spaces and the last dot
+                // удалить все пробелы и последнюю точку
                 curVal.val = curVal.val.replace(/([ ]){1,2}(([ ]{0,2}\.{0,1}[ ]{0,2}){1,3})/,'');
 
-                curVal.start = curVal.val.substring(0,selStart); // part of the string before the cursor
-                curVal.end = curVal.val.substring(selEnd); // part of the string after the cursor
+                curVal.start = curVal.val.substring(0,selStart); // до курсора
+                curVal.end = curVal.val.substring(selEnd); // после курсора
+                curVal.end = curVal.end == '.' ? '' : curVal.end; // удалить точку
 
                 var key = String.fromCharCode(k)?String.fromCharCode(k):'';
 
@@ -95,7 +95,7 @@ $.fn.setCursorPosition = function(pos) {
                     selStart--;
                 }else if(k==8){ // backspace
 
-                    // if required to remove a dot
+                    // если нужно удалять точку
                     if(curVal.start.substring(curVal.start.length-2).search('\\.') >= 0) {
                         curVal.start = curVal.start.substring(0,curVal.start.length-1);
                         selStart-=2;
@@ -112,7 +112,7 @@ $.fn.setCursorPosition = function(pos) {
 
                     } else str = curVal.start+curVal.end;
 
-                    setInput(str,selStart);
+                    setInput(str,selStart,key);
 
                 }
 
