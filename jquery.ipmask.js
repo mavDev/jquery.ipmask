@@ -68,7 +68,7 @@ $.fn.setCursorPosition = function(pos) {
                 // del firefox
                 if(k==46 && e.which==0) k=0;
 
-                // поменять пробел и , на точку
+                // replace . and space for dot
                 if(k == 44 || k == 32) {
                     k = 46;
                 }
@@ -81,12 +81,12 @@ $.fn.setCursorPosition = function(pos) {
                 selEnd = input[0].selectionEnd;
                 curVal.val = input.val();
 
-                // удалить все пробелы и последнюю точку
+                // del all spaces and last dot
                 curVal.val = curVal.val.replace(/([ ]){1,2}(([ ]{0,2}\.{0,1}[ ]{0,2}){1,3})/,'');
 
-                curVal.start = curVal.val.substring(0,selStart); // до курсора
-                curVal.end = curVal.val.substring(selEnd); // после курсора
-                curVal.end = curVal.end == '.' ? '' : curVal.end; // удалить точку
+                curVal.start = curVal.val.substring(0,selStart); // before cursor
+                curVal.end = curVal.val.substring(selEnd); // after cursor
+                curVal.end = curVal.end == '.' ? '' : curVal.end; // remove if dot
 
                 var key = String.fromCharCode(k)?String.fromCharCode(k):'';
 
@@ -95,7 +95,7 @@ $.fn.setCursorPosition = function(pos) {
                     selStart--;
                 }else if(k==8){ // backspace
 
-                    // если нужно удалять точку
+                    // if need remove last dot
                     if(curVal.start.substring(curVal.start.length-2).search('\\.') >= 0) {
                         curVal.start = curVal.start.substring(0,curVal.start.length-1);
                         selStart-=2;

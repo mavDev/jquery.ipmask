@@ -3,7 +3,7 @@ jquery.ipmask
 
 Utility that allows you to enter only the characters that match the format ip.v4
 
-example of the use: http://jsfiddle.net/mavDev/DhNfN/
+example of the use: http://jsfiddle.net/mavDev/DhNfN/2/
 
 1. link jquery
 2. link lib
